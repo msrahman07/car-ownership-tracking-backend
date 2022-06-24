@@ -1,0 +1,371 @@
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreatePeople (20220624062718)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "people" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "email" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220624062718"]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-06-24 06:29:40.191554"], ["updated_at", "2022-06-24 06:29:40.191554"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPerson Create (0.6ms)[0m  [1m[32mINSERT INTO "people" ("first_name", "last_name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["first_name", "Shahriar"], ["last_name", "Rahman"], ["email", "ms@sfu.ca"], ["created_at", "2022-06-24 06:30:50.554586"], ["updated_at", "2022-06-24 06:30:50.554586"]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mPerson Load (0.5ms)[0m  [1m[34mSELECT "people".* FROM "people" WHERE "people"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPerson Load (0.4ms)[0m  [1m[34mSELECT "people".* FROM "people"[0m
+Started GET "/" for ::1 at 2022-06-23 23:32:51 -0700
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /var/lib/gems/2.7.0/gems/railties-7.0.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /var/lib/gems/2.7.0/gems/railties-7.0.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.2ms | Allocations: 682)
+Completed 200 OK in 7ms (Views: 3.4ms | ActiveRecord: 0.0ms | Allocations: 6435)
+
+
+Started GET "/persons" for ::1 at 2022-06-23 23:32:56 -0700
+Processing by PersonsController#index as HTML
+  [1m[36mPerson Load (0.1ms)[0m  [1m[34mSELECT "people".* FROM "people"[0m
+  ↳ app/controllers/persons_controller.rb:4:in `index'
+Completed 200 OK in 6ms (Views: 4.8ms | ActiveRecord: 0.5ms | Allocations: 6067)
+
+
+Started GET "/favicon.ico" for ::1 at 2022-06-23 23:32:56 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/persons" for ::1 at 2022-06-23 23:33:20 -0700
+Processing by PersonsController#index as */*
+  Parameters: {"email"=>"Heloo", "person"=>{"email"=>"Heloo"}}
+  [1m[36mPerson Load (0.1ms)[0m  [1m[34mSELECT "people".* FROM "people"[0m
+  ↳ app/controllers/persons_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.1ms | Allocations: 755)
+
+
+Started GET "/persons?id=1" for ::1 at 2022-06-23 23:36:11 -0700
+Processing by PersonsController#index as */*
+  Parameters: {"email"=>"Heloo", "id"=>"1", "person"=>{"email"=>"Heloo"}}
+  [1m[36mPerson Load (0.1ms)[0m  [1m[34mSELECT "people".* FROM "people"[0m
+  ↳ app/controllers/persons_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.1ms | Allocations: 755)
+
+
+Started GET "/persons?id=2" for ::1 at 2022-06-23 23:36:15 -0700
+Processing by PersonsController#index as */*
+  Parameters: {"email"=>"Heloo", "id"=>"2", "person"=>{"email"=>"Heloo"}}
+  [1m[36mPerson Load (0.1ms)[0m  [1m[34mSELECT "people".* FROM "people"[0m
+  ↳ app/controllers/persons_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.1ms | Allocations: 755)
+
+
+Started GET "/persons?id=2" for ::1 at 2022-06-23 23:37:30 -0700
+Processing by PersonsController#index as */*
+  Parameters: {"id"=>"2", "person"=>{"id"=>"2"}}
+  [1m[36mPerson Load (0.1ms)[0m  [1m[34mSELECT "people".* FROM "people"[0m
+  ↳ app/controllers/persons_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.1ms | Allocations: 739)
+
+
+Started GET "/persons" for ::1 at 2022-06-23 23:37:34 -0700
+Processing by PersonsController#index as */*
+  Parameters: {"id"=>"1", "person"=>{"id"=>"1"}}
+  [1m[36mPerson Load (0.1ms)[0m  [1m[34mSELECT "people".* FROM "people"[0m
+  ↳ app/controllers/persons_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.1ms | Allocations: 739)
+
+
+Started GET "/persons" for ::1 at 2022-06-23 23:37:38 -0700
+Processing by PersonsController#index as */*
+  Parameters: {"id"=>"2", "person"=>{"id"=>"2"}}
+  [1m[36mPerson Load (0.1ms)[0m  [1m[34mSELECT "people".* FROM "people"[0m
+  ↳ app/controllers/persons_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 0.7ms | ActiveRecord: 0.1ms | Allocations: 739)
+
+
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPerson Create (0.6ms)[0m  [1m[32mINSERT INTO "people" ("first_name", "last_name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["first_name", "Savera"], ["last_name", "Haider"], ["email", "sh@gmail.com"], ["created_at", "2022-06-24 06:40:12.907521"], ["updated_at", "2022-06-24 06:40:12.907521"]]
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mPerson Load (0.3ms)[0m  [1m[34mSELECT "people".* FROM "people"[0m
+Started GET "/persons" for ::1 at 2022-06-23 23:40:33 -0700
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PersonsController#index as */*
+  Parameters: {"id"=>"2", "person"=>{"id"=>"2"}}
+  [1m[36mPerson Load (0.1ms)[0m  [1m[34mSELECT "people".* FROM "people"[0m
+  ↳ app/controllers/persons_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.7ms | Allocations: 1971)
+
+
+Started GET "/persons" for ::1 at 2022-06-23 23:40:50 -0700
+Processing by PersonsController#index as */*
+  Parameters: {"id"=>2, "person"=>{"id"=>2}}
+  [1m[36mPerson Load (0.1ms)[0m  [1m[34mSELECT "people".* FROM "people"[0m
+  ↳ app/controllers/persons_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.1ms | Allocations: 857)
+
+
+Started GET "/persons/2" for ::1 at 2022-06-23 23:41:01 -0700
+Processing by PersonsController#show as */*
+  Parameters: {"id"=>"2", "person"=>{"id"=>"2"}}
+  [1m[36mPerson Load (0.1ms)[0m  [1m[34mSELECT "people".* FROM "people" WHERE "people"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/persons_controller.rb:8:in `show'
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.1ms | Allocations: 1280)
+
+
+Started GET "/persons/12" for ::1 at 2022-06-23 23:41:41 -0700
+Processing by PersonsController#show as */*
+  Parameters: {"id"=>"12", "person"=>{"id"=>"12"}}
+  [1m[36mPerson Load (0.1ms)[0m  [1m[34mSELECT "people".* FROM "people" WHERE "people"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/persons_controller.rb:8:in `show'
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms | Allocations: 507)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Person with 'id'=12):
+  
+app/controllers/persons_controller.rb:8:in `show'
+Started GET "/persons/1" for ::1 at 2022-06-23 23:41:47 -0700
+Processing by PersonsController#show as */*
+  Parameters: {"id"=>"1", "person"=>{"id"=>"1"}}
+  [1m[36mPerson Load (0.1ms)[0m  [1m[34mSELECT "people".* FROM "people" WHERE "people"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/persons_controller.rb:8:in `show'
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.1ms | Allocations: 610)
+
+
+Started GET "/persons" for ::1 at 2022-06-23 23:42:13 -0700
+Processing by PersonsController#index as */*
+  Parameters: {"id"=>2, "person"=>{"id"=>2}}
+  [1m[36mPerson Load (0.1ms)[0m  [1m[34mSELECT "people".* FROM "people"[0m
+  ↳ app/controllers/persons_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.1ms | Allocations: 857)
+
+
+Started POST "/persons" for ::1 at 2022-06-23 23:48:02 -0700
+  
+SyntaxError (/home/shahriar/Desktop/Codes/projects/car-ownership-tracking-backend/app/controllers/persons_controller.rb:24: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/persons_controller.rb:24: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/persons_controller.rb:24: syntax error, unexpected end-of-input, expecting `end'
+Started POST "/persons" for ::1 at 2022-06-23 23:48:24 -0700
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PersonsController#create as */*
+  Parameters: {"first_name"=>"Tasnim", "last_name"=>"Anjum", "email"=>"ta@gmail.com", "person"=>{"first_name"=>"Tasnim", "last_name"=>"Anjum", "email"=>"ta@gmail.com"}}
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/persons_controller.rb:14:in `create'
+  [1m[36mPerson Create (0.2ms)[0m  [1m[32mINSERT INTO "people" ("first_name", "last_name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["first_name", "Tasnim"], ["last_name", "Anjum"], ["email", "ta@gmail.com"], ["created_at", "2022-06-24 06:48:24.946539"], ["updated_at", "2022-06-24 06:48:24.946539"]]
+  ↳ app/controllers/persons_controller.rb:14:in `create'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/persons_controller.rb:14:in `create'
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 1.8ms | Allocations: 2833)
+
+
+Started GET "/persons" for ::1 at 2022-06-23 23:48:30 -0700
+Processing by PersonsController#index as */*
+  Parameters: {"first_name"=>"Tasnim", "last_name"=>"Anjum", "email"=>"ta@gmail.com", "person"=>{"first_name"=>"Tasnim", "last_name"=>"Anjum", "email"=>"ta@gmail.com"}}
+  [1m[36mPerson Load (0.2ms)[0m  [1m[34mSELECT "people".* FROM "people"[0m
+  ↳ app/controllers/persons_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.1ms | ActiveRecord: 0.2ms | Allocations: 1032)
+
+
+Started PUT "/persons" for ::1 at 2022-06-23 23:53:44 -0700
+  
+ActionController::RoutingError (No route matches [PUT] "/persons"):
+  
+Started PUT "/persons/3" for ::1 at 2022-06-23 23:54:07 -0700
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PersonsController#update as */*
+  Parameters: {"first_name"=>"Tasnim", "last_name"=>"Anjum", "email"=>"tasnim@gmail.com", "id"=>"3", "person"=>{"first_name"=>"Tasnim", "last_name"=>"Anjum", "email"=>"tasnim@gmail.com"}}
+  [1m[36mPerson Load (0.1ms)[0m  [1m[34mSELECT "people".* FROM "people" WHERE "people"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/persons_controller.rb:26:in `update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/persons_controller.rb:27:in `update'
+  [1m[36mPerson Update (0.2ms)[0m  [1m[33mUPDATE "people" SET "email" = ?, "updated_at" = ? WHERE "people"."id" = ?[0m  [["email", "tasnim@gmail.com"], ["updated_at", "2022-06-24 06:54:07.313968"], ["id", 3]]
+  ↳ app/controllers/persons_controller.rb:27:in `update'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/persons_controller.rb:27:in `update'
+Completed 200 OK in 10ms (Views: 0.3ms | ActiveRecord: 2.8ms | Allocations: 3485)
+
+
+Started GET "/persons" for ::1 at 2022-06-23 23:54:51 -0700
+Processing by PersonsController#index as */*
+  Parameters: {"first_name"=>"Tasnim", "last_name"=>"Anjum", "email"=>"tasnim@gmail.com", "person"=>{"first_name"=>"Tasnim", "last_name"=>"Anjum", "email"=>"tasnim@gmail.com"}}
+  [1m[36mPerson Load (0.2ms)[0m  [1m[34mSELECT "people".* FROM "people"[0m
+  ↳ app/controllers/persons_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.2ms | Allocations: 1005)
+
+
+Started DELETE "/persons/3" for ::1 at 2022-06-23 23:56:35 -0700
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PersonsController#destroy as */*
+  Parameters: {"first_name"=>"Tasnim", "last_name"=>"Anjum", "email"=>"tasnim@gmail.com", "id"=>"3", "person"=>{"first_name"=>"Tasnim", "last_name"=>"Anjum", "email"=>"tasnim@gmail.com"}}
+  [1m[36mPerson Load (0.1ms)[0m  [1m[34mSELECT "people".* FROM "people" WHERE "people"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/persons_controller.rb:35:in `destroy'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/persons_controller.rb:36:in `destroy'
+  [1m[36mPerson Destroy (0.1ms)[0m  [1m[31mDELETE FROM "people" WHERE "people"."id" = ?[0m  [["id", 3]]
+  ↳ app/controllers/persons_controller.rb:36:in `destroy'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/persons_controller.rb:36:in `destroy'
+Completed 303 See Other in 5ms (Views: 0.1ms | ActiveRecord: 2.3ms | Allocations: 2981)
+
+
+Started DELETE "/persons" for ::1 at 2022-06-23 23:56:41 -0700
+  
+ActionController::RoutingError (No route matches [DELETE] "/persons"):
+  
+Started GET "/persons" for ::1 at 2022-06-23 23:56:45 -0700
+Processing by PersonsController#index as */*
+  Parameters: {"first_name"=>"Tasnim", "last_name"=>"Anjum", "email"=>"tasnim@gmail.com", "person"=>{"first_name"=>"Tasnim", "last_name"=>"Anjum", "email"=>"tasnim@gmail.com"}}
+  [1m[36mPerson Load (0.1ms)[0m  [1m[34mSELECT "people".* FROM "people"[0m
+  ↳ app/controllers/persons_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.1ms | Allocations: 890)
+
+
+Started POST "/persons" for ::1 at 2022-06-23 23:57:30 -0700
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PersonsController#create as */*
+  Parameters: {"first_name"=>"Tasnim", "last_name"=>"Anjum", "email"=>"tasnim@gmail.com", "person"=>{"first_name"=>"Tasnim", "last_name"=>"Anjum", "email"=>"tasnim@gmail.com"}}
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/persons_controller.rb:18:in `create'
+  [1m[36mPerson Create (0.2ms)[0m  [1m[32mINSERT INTO "people" ("first_name", "last_name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["first_name", "Tasnim"], ["last_name", "Anjum"], ["email", "tasnim@gmail.com"], ["created_at", "2022-06-24 06:57:30.719548"], ["updated_at", "2022-06-24 06:57:30.719548"]]
+  ↳ app/controllers/persons_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/persons_controller.rb:18:in `create'
+Completed 200 OK in 6ms (Views: 0.3ms | ActiveRecord: 2.2ms | Allocations: 2817)
+
+
+Started DELETE "/persons/4" for ::1 at 2022-06-23 23:57:46 -0700
+Processing by PersonsController#destroy as */*
+  Parameters: {"first_name"=>"Tasnim", "last_name"=>"Anjum", "email"=>"tasnim@gmail.com", "id"=>"4", "person"=>{"first_name"=>"Tasnim", "last_name"=>"Anjum", "email"=>"tasnim@gmail.com"}}
+  [1m[36mPerson Load (0.1ms)[0m  [1m[34mSELECT "people".* FROM "people" WHERE "people"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/persons_controller.rb:35:in `destroy'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/persons_controller.rb:36:in `destroy'
+  [1m[36mPerson Destroy (0.1ms)[0m  [1m[31mDELETE FROM "people" WHERE "people"."id" = ?[0m  [["id", 4]]
+  ↳ app/controllers/persons_controller.rb:36:in `destroy'
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/persons_controller.rb:36:in `destroy'
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 1.9ms | Allocations: 1959)
+
+
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCars (20220624072658)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "cars" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "year" integer, "make" varchar, "model" varchar, "price" integer, "person_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_2a5796ca22"
+FOREIGN KEY ("person_id")
+  REFERENCES "people" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_cars_on_person_id" ON "cars" ("person_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220624072658"]]
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started DELETE "/persons/4" for ::1 at 2022-06-24 00:33:54 -0700
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PersonsController#destroy as */*
+  Parameters: {"first_name"=>"Tasnim", "last_name"=>"Anjum", "email"=>"tasnim@gmail.com", "id"=>"4", "person"=>{"first_name"=>"Tasnim", "last_name"=>"Anjum", "email"=>"tasnim@gmail.com"}}
+  [1m[36mPerson Load (0.1ms)[0m  [1m[34mSELECT "people".* FROM "people" WHERE "people"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/persons_controller.rb:35:in `destroy'
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms | Allocations: 660)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Person with 'id'=4):
+  
+app/controllers/persons_controller.rb:35:in `destroy'
+Started GET "/persons" for ::1 at 2022-06-24 00:34:00 -0700
+Processing by PersonsController#index as */*
+  Parameters: {"first_name"=>"Tasnim", "last_name"=>"Anjum", "email"=>"tasnim@gmail.com", "person"=>{"first_name"=>"Tasnim", "last_name"=>"Anjum", "email"=>"tasnim@gmail.com"}}
+  [1m[36mPerson Load (0.1ms)[0m  [1m[34mSELECT "people".* FROM "people"[0m
+  ↳ app/controllers/persons_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.1ms | Allocations: 1783)
+
+
+Started GET "/cars" for ::1 at 2022-06-24 00:34:18 -0700
+Processing by CarsController#index as */*
+  Parameters: {"first_name"=>"Tasnim", "last_name"=>"Anjum", "email"=>"tasnim@gmail.com", "car"=>{}}
+  [1m[36mCar Load (0.1ms)[0m  [1m[34mSELECT "cars".* FROM "cars"[0m
+  ↳ app/controllers/cars_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.3ms | Allocations: 671)
+
+
+Started POST "/cars" for ::1 at 2022-06-24 00:35:40 -0700
+Processing by CarsController#create as */*
+  Parameters: {"year"=>"2002", "make"=>"Audi", "model"=>"A6", "price"=>5000, "person_id"=>1, "car"=>{"year"=>"2002", "make"=>"Audi", "model"=>"A6", "price"=>5000, "person_id"=>1}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/cars_controller.rb:19:in `create'
+  [1m[36mPerson Load (0.1ms)[0m  [1m[34mSELECT "people".* FROM "people" WHERE "people"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cars_controller.rb:19:in `create'
+  [1m[36mCar Create (0.2ms)[0m  [1m[32mINSERT INTO "cars" ("year", "make", "model", "price", "person_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["year", 2002], ["make", "Audi"], ["model", "A6"], ["price", 5000], ["person_id", 1], ["created_at", "2022-06-24 07:35:40.523765"], ["updated_at", "2022-06-24 07:35:40.523765"]]
+  ↳ app/controllers/cars_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/cars_controller.rb:19:in `create'
+Completed 200 OK in 17ms (Views: 0.3ms | ActiveRecord: 2.0ms | Allocations: 11397)
+
+
+Started POST "/persons" for ::1 at 2022-06-24 00:35:46 -0700
+Processing by PersonsController#create as */*
+  Parameters: {"year"=>"2002", "make"=>"Audi", "model"=>"A6", "price"=>5000, "person_id"=>1, "person"=>{}}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 175)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: person
+Did you mean?  person_id):
+  
+app/controllers/persons_controller.rb:43:in `person_params'
+app/controllers/persons_controller.rb:17:in `create'
+Started GET "/persons" for ::1 at 2022-06-24 00:35:51 -0700
+Processing by PersonsController#index as */*
+  Parameters: {"year"=>"2002", "make"=>"Audi", "model"=>"A6", "price"=>5000, "person_id"=>1, "person"=>{}}
+  [1m[36mPerson Load (0.1ms)[0m  [1m[34mSELECT "people".* FROM "people"[0m
+  ↳ app/controllers/persons_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.1ms | Allocations: 857)
+
+
+Started DELETE "/persons/1" for ::1 at 2022-06-24 00:46:37 -0700
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PersonsController#destroy as */*
+  Parameters: {"year"=>"2002", "make"=>"Audi", "model"=>"A6", "price"=>5000, "person_id"=>1, "id"=>"1", "person"=>{}}
+  [1m[36mPerson Load (0.1ms)[0m  [1m[34mSELECT "people".* FROM "people" WHERE "people"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/persons_controller.rb:35:in `destroy'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/persons_controller.rb:37:in `destroy'
+  [1m[36mCar Load (0.2ms)[0m  [1m[34mSELECT "cars".* FROM "cars" WHERE "cars"."person_id" = ?[0m  [["person_id", 1]]
+  ↳ app/controllers/persons_controller.rb:37:in `destroy'
+  [1m[36mCar Destroy (0.2ms)[0m  [1m[31mDELETE FROM "cars" WHERE "cars"."id" = ?[0m  [["id", 1]]
+  ↳ app/controllers/persons_controller.rb:37:in `destroy'
+  [1m[36mPerson Destroy (0.2ms)[0m  [1m[31mDELETE FROM "people" WHERE "people"."id" = ?[0m  [["id", 1]]
+  ↳ app/controllers/persons_controller.rb:37:in `destroy'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/persons_controller.rb:37:in `destroy'
+Completed 200 OK in 15ms (Views: 0.2ms | ActiveRecord: 2.2ms | Allocations: 9966)
+
+
+Started DELETE "/persons/" for ::1 at 2022-06-24 00:46:47 -0700
+  
+ActionController::RoutingError (No route matches [DELETE] "/persons"):
+  
+Started GET "/persons/" for ::1 at 2022-06-24 00:46:50 -0700
+Processing by PersonsController#index as */*
+  Parameters: {"year"=>"2002", "make"=>"Audi", "model"=>"A6", "price"=>5000, "person_id"=>1, "person"=>{}}
+  [1m[36mPerson Load (0.1ms)[0m  [1m[34mSELECT "people".* FROM "people"[0m
+  ↳ app/controllers/persons_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.1ms | Allocations: 772)
+
+
+Started GET "/cars/" for ::1 at 2022-06-24 00:46:55 -0700
+Processing by CarsController#index as */*
+  Parameters: {"year"=>"2002", "make"=>"Audi", "model"=>"A6", "price"=>5000, "person_id"=>1, "car"=>{"year"=>"2002", "make"=>"Audi", "model"=>"A6", "price"=>5000, "person_id"=>1}}
+  [1m[36mCar Load (0.1ms)[0m  [1m[34mSELECT "cars".* FROM "cars"[0m
+  ↳ app/controllers/cars_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.1ms | Allocations: 654)
+
+
