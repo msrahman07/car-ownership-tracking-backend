@@ -1,6 +1,7 @@
 class CarsController < ApplicationController
     def index
-        @cars = Car.all
+        @cars = Car.where("person_id = ?", params[:person_id])
+        #.all
         render json: @cars
     end
 
