@@ -1,6 +1,6 @@
 class CarsController < ApplicationController
     def index
-        @cars = Car.where("person_id = ?", params[:person_id])
+        @cars = Car.all #where("person_id = ?", params[:person_id])
         #.all
         render json: @cars
     end
@@ -31,9 +31,19 @@ class CarsController < ApplicationController
     def update
         @car = Car.find(params[:id])
         if(@car.update(car_params))
-            render json: @Car
+            render json: @car
         else
             render json: {status: "unsuccessful"}
+        end
+    end
+
+    def destroy
+        @car = Car.find(params[:id])
+        
+        if(@car.destroy)
+          render json: {status:"deleted"}
+        else
+          render json: {status:"unsuccessful"}
         end
     end
 

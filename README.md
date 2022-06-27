@@ -1,24 +1,11 @@
 # README
+## Instructions on how to run the backend
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Run the following script
+### `./runBackEnd.sh`
 
-Things you may want to cover:
+## Or please follow the instructions below
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### `sudo bundle install`
+### `rails db:migrate`
+### `rails s -p 3000`
